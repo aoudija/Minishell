@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 23:52:49 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/15 08:25:43 by aoudija          ###   ########.fr       */
+/*   Created: 2023/05/15 08:34:02 by aoudija           #+#    #+#             */
+/*   Updated: 2023/05/15 08:37:30 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/minishell.h"
+#include "../include/minishell.h"
 
-void	execute(t_cmd	*cmd)
+int is_builtin(t_cmd *cmd)
 {
-	if (!cmd->cmd)
-		return ;
-	if (!ft_strcmp("echo", cmd->cmd))
-		ft_echo(cmd);
+    if (!ft_strcmp("echo", cmd->cmd))
+		return (1);
 	else if (!ft_strcmp("env", cmd->cmd))
-		ft_env();
+		return (1);
 	else if (!ft_strcmp("export", cmd->cmd))
-		ft_export(cmd);
+		return (1);
 	else if (!ft_strcmp("unset", cmd->cmd))
-		ft_unset(cmd);
+		return (1);
 	else if (!ft_strcmp("cd", cmd->cmd))
-		cd(cmd);
+		return (1);
 	else if (!ft_strcmp("pwd", cmd->cmd))
-		pwd(cmd);
-	else
-		execute_it(cmd);
+		return (1);
+    return (0);
 }
