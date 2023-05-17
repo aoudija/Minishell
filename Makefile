@@ -6,7 +6,7 @@
 #    By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:42:33 by aoudija           #+#    #+#              #
-#    Updated: 2023/05/15 08:35:30 by aoudija          ###   ########.fr        #
+#    Updated: 2023/05/16 14:03:09 by aoudija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,15 @@ PARSING	= $(addprefix  parsing/, expand/ft_expand expand/ft_expand_utils expand/
 			utils/ft_heredoc_utils\
 			ft_start ft_tokenizer ft_get_cmd ft_heredoc)
 		
-FILES = main builtins/ft_echo builtins/ft_env builtins/pwd builtins/cd/ft_cd \ 
+FILES = main builtins/ft_echo builtins/ft_env builtins/pwd builtins/cd/ft_cd \
 		builtins/cd/cd_utils builtins/export/export_utils builtins/is_builtin \
-		builtins/export/ft_export builtins/ft_unset builtins/export/fill_export \
-		pipe/pipe pipe/pipe_utils pipe/cmd_list_size pipe/grant_access execute $(LIBFT) $(PARSING)
+		builtins/export/ft_export builtins/ft_unset builtins/export/fill_export builtins/export/var_is_valid\
+		pipe/pipe pipe/pipe_utils_1 pipe/cmd_list_size pipe/grant_access execute $(LIBFT) $(PARSING)
 
 SRC		= $(FILES:=.c)
 OBJ		= $(FILES:=.o)
 HEADER  = include/minishell.h
 INCLUDES=  -I include
-
 
 
 all: $(NAME) 
@@ -55,8 +54,6 @@ $(NAME): $(OBJ) $(HEADER)
 	@$(CC) $(OBJ) $(IFLAGS) $(INCLUDES) -o $(NAME) $(LFLAGS) -lreadline
 	@printf "$(GREEN)    - Executable ready.\n$(RESET)"
 
-
-	
 %.o: %.c $(HEADER)
 	@$(CC) $(FLAGS) $(IFLAGS) -c $< -o $@
 

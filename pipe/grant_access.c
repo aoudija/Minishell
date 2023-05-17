@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 12:54:22 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/14 10:30:40 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/17 13:38:33 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,14 @@ char	*grant_access(t_cmd *cmd)
 	char	*s;
 	char	*err;
 
+		printf("##%s %s %s\n", cmd->cmd,cmd->args[0],cmd->args[1]);
 	if (!ft_strchr(cmd->args[0], '/'))
 		s = cmd_path(cmd);
 	else
 		s = ft_strdup(cmd->args[0]);
-	if (access(s, F_OK) == -1)
+	if (access(s, F_OK | X_OK) == -1)
 	{
-		printf("{%s}\n", cmd->cmd);
-		// if (errno == 13)
-		// 	return (NULL);
-		if (errno == 14)
+		if (errno == 14)/*bad adress*/
 		{
 			err = ft_strjoin("bashn't: ", cmd->args[0]);
 			err = ft_strjoin_frees1(err, ": command not found");
@@ -43,10 +41,5 @@ char	*grant_access(t_cmd *cmd)
 			return (NULL);
 		}
 	}
-	// else if (!access(s, X_OK))
-	// {
-	// 	printf("f_OK -> %s\n", s);
-	// 	return (NULL);
-	// }
 	return (s);
 }

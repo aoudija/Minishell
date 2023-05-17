@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:23:23 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/14 12:02:47 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/15 13:17:17 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ void	fill_env(char **envv)
 		ft_lstadd_back(&g_data.env, ft_lstnew(envv[i]));
 }
 
-void	ft_env(void)
+void	ft_env(t_cmd *cmd)
 {
 	t_list	*temp;
 
 	temp = g_data.env;
 	while (temp)
 	{
-		printf("%s\n", temp->content);
+		ft_putstr_fd(temp->content, cmd->out);
+		write(cmd->out, "\n", 1);
 		temp = temp->next;
 	}
 }

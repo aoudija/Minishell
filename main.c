@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:39 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/14 18:30:27 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/17 13:59:18 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	main(int ac, char **av, char **envv)
 				add_history(line);
 				if(ft_start(line, data, &cmd))
 				{
+					// printf("** %s %s\n", cmd->args[0], cmd->args[1]);
 					execute(cmd);
 					ft_cmdclear(&cmd);
 				}

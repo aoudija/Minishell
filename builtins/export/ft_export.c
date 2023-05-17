@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:47:48 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/14 12:25:25 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/16 14:42:05 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	ft_export(t_cmd *cmd)
 	{
 		while (temp_exp)
 		{
-			printf("%s\n", temp_exp->content);
+			ft_putstr_fd(temp_exp->content, cmd->out);
+			write(cmd->out, "\n", 1);
 			temp_exp = temp_exp->next;
 		}
 		return ;

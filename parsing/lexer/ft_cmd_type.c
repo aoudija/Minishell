@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:27:55 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/14 18:44:19 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/17 13:30:21 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	ft_cmd_type(t_token **data)
 		if (tmp->type == APPOUT || tmp->type == OUTFILE
 			|| tmp->type == INFILE)
 			tmp->value = ft_expand_name(tmp->value);
+		else if (tmp->type != DELIMITER)
+		{
+			if (tmp->value[0] == '$')
+				tmp->flag = 1;
+			else
+				tmp->flag = 0;
+			tmp->value = ft_expand_name(tmp->value);
+		}
 		tmp = tmp->next;
 	}
 }
