@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 12:54:22 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/17 13:38:33 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/17 15:07:21 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*grant_access(t_cmd *cmd)
 	char	*s;
 	char	*err;
 
-		printf("##%s %s %s\n", cmd->cmd,cmd->args[0],cmd->args[1]);
 	if (!ft_strchr(cmd->args[0], '/'))
 		s = cmd_path(cmd);
 	else

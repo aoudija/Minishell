@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 06:26:45 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/17 13:29:27 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/18 12:40:58 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,11 +141,13 @@ void		execute(t_cmd	*cmd);
 int			var_is_valid(t_cmd *cmd, char *args);
 /*export*/
 int			count_char(char *str, char c);
+char		*exp_plus(char *exp_old, char *exp_new);
+char		*env_plus(char *env_old, char *env_new);
 void		fill_export(void);
 void		sort_exp(void);
 char		*exp_new_content(char *arg);
-int			exp_matching_vars(t_cmd *cmd, int i);
-int			env_new_exp(t_cmd *cmd, int i, int c);
+int			exp_matching_vars(t_cmd *cmd, int i, int plus);
+int			env_new(t_cmd *cmd, int i, int plus);
 void		ft_export(t_cmd	*cmd);
 void		export_norm1(t_cmd *cmd, int i);
 void		export_norm2(t_cmd *cmd, int i);

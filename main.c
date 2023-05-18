@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:39 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/17 13:59:18 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/18 13:04:37 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	main(int ac, char **av, char **envv)
 	t_token	*data;
 	t_cmd	*cmd;
 
-	// i = 0;
-	// t_cmd	*tmp;
 	// int		i;
+	// i = -1;
+	// t_cmd	*tmp;
 	if (ac == 1)
 	{
 		g_data.fstdin = dup(0);
@@ -72,7 +72,6 @@ int	main(int ac, char **av, char **envv)
 				add_history(line);
 				if(ft_start(line, data, &cmd))
 				{
-					// printf("** %s %s\n", cmd->args[0], cmd->args[1]);
 					execute(cmd);
 					ft_cmdclear(&cmd);
 				}

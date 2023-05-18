@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:28 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/13 11:44:23 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/18 12:53:08 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	n_or_not(char	**args, int i)
 	while (args[i][++j] == 'n' && args[i][j])
 		;
 	return (j == ft_strlen(args[i]));
+	return (i);
 }
 
 void	ft_echo(t_cmd *cmd)

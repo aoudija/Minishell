@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:47:48 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/16 14:42:05 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/18 12:52:33 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*exp_new_content(char *arg)
 	return (d);
 }
 
-int	exp_matching_vars(t_cmd *cmd, int i)
+int	exp_matching_vars(t_cmd *cmd, int i, int plus)
 {
 	t_list	*temp_exp;
 	int		c;
@@ -43,8 +43,11 @@ int	exp_matching_vars(t_cmd *cmd, int i)
 	{
 		if (ft_strchr(temp_exp->content, '=')
 			&& !var_compare(temp_exp->content + 11, cmd->args[i]))
-		{
-			temp_exp->content = exp_new_content(cmd->args[i]);
+		{/*join*/
+			if (plus)
+				temp_exp->content = exp_plus(temp_exp->content, cmd->args[i]);
+			else
+				temp_exp->content = exp_new_content(cmd->args[i]);
 			c = 1;
 		}
 		else if (!ft_strchr(temp_exp->content, '=')
@@ -59,27 +62,20 @@ int	exp_matching_vars(t_cmd *cmd, int i)
 	return (c);
 }
 
-int	env_new_exp(t_cmd *cmd, int i, int c)
+int	env_new(t_cmd *cmd, int i, int plus)
 {
 	t_list	*temp_env;
 
 	temp_env = g_data.env;
 	while (temp_env)
 	{
-		if (!ft_strcmp(temp_env->content, cmd->args[i]))
-		{
-			if (!c)
-				ft_lstadd_back(&g_data.exp,
-					ft_lstnew(ft_strjoin("declare -x ", cmd->args[i])));
-			return (0);
-		}
 		if (ft_strchr(temp_env->content, '=')
 			&& !var_compare(temp_env->content, cmd->args[i]))
-		{
-			temp_env->content = ft_strdup(cmd->args[i]);
-			if (!c)
-				ft_lstadd_back(&g_data.exp,
-					ft_lstnew(ft_strjoin("declare -x ", cmd->args[i])));
+		{/*join*/
+			if (plus)
+				temp_env->content = env_plus(temp_env->content, cmd->args[i]);
+			else
+				temp_env->content = ft_strdup(cmd->args[i]);
 			return (0);
 		}
 		temp_env = temp_env->next;

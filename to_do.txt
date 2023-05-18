@@ -6,7 +6,7 @@
 #    By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 14:53:06 by aoudija           #+#    #+#              #
-#    Updated: 2023/05/16 15:14:31 by aoudija          ###   ########.fr        #
+#    Updated: 2023/05/18 11:33:18 by aoudija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@
 
 
 
-
+"2 days left problem with expand echo case so far , export not finished yet and 
+exit status + norm && leaks."
 
 /*EXPORT HANDLING +*/
 IDEA --> see if there is a plus remove it and add variable int plus = 1 | 0;

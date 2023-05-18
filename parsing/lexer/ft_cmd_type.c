@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:27:55 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/17 13:30:21 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/17 14:49:17 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_cmd_type(t_token **data)
 				tmp->flag = 1;
 			else
 				tmp->flag = 0;
-			tmp->value = ft_expand_name(tmp->value);
+			tmp->value = ft_expand(tmp->value);
 		}
 		tmp = tmp->next;
 	}

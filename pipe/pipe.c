@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:13:14 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/16 10:38:09 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/18 15:18:06 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ void	execute_it(t_cmd *cmd)
 		else
 		{
 			waitpid(pid, &g_data.exit_status, 0);
-			printf("->%d\n", g_data.exit_status);
+			// printf("->%d\n", g_data.exit_status);
 			free(s);
 			ft_free(envv);
 			return ;

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:00:18 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/17 12:24:25 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/17 20:39:59 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ int	var_is_valid(t_cmd *cmd, char	*args)
 	char	*t;
 	char	*sub;
 
-	printf("hey\n");
-	printf("=> %c\n", args[ft_strlen(args) - 1]);
 	sub = NULL;
 	if (strchr(args, '+') && args[ft_strlen(args) - 1] == '+'
 		&& !ft_strchr(args, '='))

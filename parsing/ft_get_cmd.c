@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:37:21 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/17 14:41:31 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/17 15:06:15 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ void	ft_expand_check(t_token	*tmp, t_cmd *cmd_tmp)
 	i = -1;
 	if (tmp->type == CMD)
 		ft_cmd(tmp->value, &cmd_tmp);
-	printf("%d %s", tmp->flag , ft_strchr(tmp->value, ' '));
 	if (tmp->flag && ft_strchr(tmp->value, ' '))
 	{
-		printf("*****\n");
 		ok = ft_split(tmp->value, ' ');
 		while (ok[++i])
 			cmd_tmp->args = ft_realloc(cmd_tmp->args, ok[i]);
