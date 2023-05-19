@@ -6,15 +6,15 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 08:34:02 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/15 13:17:37 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:09:48 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int is_builtin(t_cmd *cmd)
+int	is_builtin(t_cmd *cmd)
 {
-    if (!ft_strcmp("echo", cmd->cmd))
+	if (!ft_strcmp("echo", cmd->cmd))
 		return (1);
 	else if (!ft_strcmp("env", cmd->cmd))
 		return (1);
@@ -26,7 +26,7 @@ int is_builtin(t_cmd *cmd)
 		return (1);
 	else if (!ft_strcmp("pwd", cmd->cmd))
 		return (1);
-    return (0);
+	return (0);
 }
 
 void	exec_builtin(t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:13:14 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/18 15:18:06 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/19 21:35:29 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	pipe_it(t_cmd *cmd, char **envv)
 {
-	int		pid;
-	char	*s;
-	int		**fd; /* fd[0] -> read && fd[1] -> write; */
+	int		**fd;
 	int		i;
 	t_cmd	*tmp;
 
@@ -31,120 +29,12 @@ void	pipe_it(t_cmd *cmd, char **envv)
 	i = 0;
 	while (cmd->next)
 	{
-		if (!i)/*first cmd*/
-		{
-			pipe(fd[i]);
-			pid = fork();
-			if (!pid)
-			{
-				if (!is_builtin(cmd))
-				{
-					s = grant_access(cmd);
-					if (!s)
-						exit(EXIT_FAILURE);
-				}
-				dup2(cmd->in, 0);
-				dup2(cmd->out, 1);
-				close(fd[i][0]);
-				dup2(fd[i][1], cmd->out);
-				close(fd[i][1]);
-				if (cmd->out != -1 && cmd->in != -1)
-				{
-					if (is_builtin(cmd))
-					{
-						exec_builtin(cmd);
-						exit(1);
-					}
-					else
-					{
-						execve(s, cmd->args, envv);
-						exit(EXIT_FAILURE);
-					}
-				}
-			}
-		}
+		first_cmd(cmd, fd, &i, envv);
 		cmd = cmd->next;
-		if (!cmd->next)/*last cmd*/
-		{
-			if (!cmd->args)
-				return ;
-			pid = fork();
-			if (!pid)
-			{
-				if (!is_builtin(cmd))
-				{
-					s = grant_access(cmd);
-					if (!s)
-						exit(EXIT_FAILURE);
-				}
-				dup2(cmd->in, 0);
-				close(fd[i][1]);
-				dup2(fd[i][0], cmd->in);
-				dup2(cmd->out, 1);
-				close(fd[i][0]);
-				if (cmd->out != -1 && cmd->in != -1)
-				{
-					if (is_builtin(cmd))
-					{
-						exec_builtin(cmd);
-						exit(1);
-					}
-					else
-					{
-						execve(s, cmd->args, envv);
-						exit(EXIT_FAILURE);
-					}
-				}
-				exit(EXIT_FAILURE);
-			}
-		}
-		else if (cmd->next)/*cmd-in-between*/
-		{
-			pipe(fd[++i]);
-			pid = fork();
-			if (!pid)
-			{
-				if (!is_builtin(cmd))
-				{
-					s = grant_access(cmd);
-					if (!s)
-						exit(EXIT_FAILURE);
-				}
-				dup2(cmd->out, 1);
-				close(fd[i][0]);
-				close(fd[i - 1][1]);
-				dup2(fd[i - 1][0], cmd->in);
-				dup2(fd[i][1], cmd->out);
-				close(fd[i][1]);
-				close(fd[i - 1][0]);
-				if (cmd->out != -1 && cmd->in != -1)
-				{
-					if (is_builtin(cmd))
-					{
-						exec_builtin(cmd);
-						exit(1);
-					}
-					else
-					{
-						execve(s, cmd->args, envv);
-						exit(EXIT_FAILURE);
-					}
-				}
-			}
-		}
-			else
-				close(fd[i - 1][1]);
+		last_cmd(cmd, fd, &i, envv);
+		middle_cmd(cmd, fd, &i, envv);
 	}
-	i = cmd_list_size(tmp) - 2;
-	while (i >= 0)
-	{
-		close(fd[i][0]);
-		close(fd[i][1]);
-		i--;
-	}
-	while (wait(NULL) > 0)
-		;
-	return ;
+	close_fdeez(tmp, fd);
 }
 
 void	execute_it(t_cmd *cmd)

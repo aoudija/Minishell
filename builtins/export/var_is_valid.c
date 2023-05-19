@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:00:18 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/17 20:39:59 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/18 20:40:59 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ char	*substring(char *args)
 	char	*sub;
 
 	sub = NULL;
-	if (ft_strchr(args, '=') && strlen_var(args))
+	if (args[0] == '+' && args[ft_strlen(args) - 1] == '=')
+		sub = NULL;
+	else if (ft_strchr(args, '=') && strlen_var(args))
 		sub = ft_substr(args, 0, strlen_var(args));
 	else if (!ft_strchr(args, '='))
 		sub = ft_strdup(args);

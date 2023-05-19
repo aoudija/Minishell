@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 14:46:56 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/14 22:06:34 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/19 12:23:31 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	cd(t_cmd *cmd)
 	if (cmd->args[1])
 	{
 		i = chdir(cmd->args[1]);
-		norma_cd_1(cmd, cwd,i);
+		norma_cd_1(cmd, cwd, i);
 	}
 	else if (!cmd->args[1])
 		norma_cd_2(cwd);

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:47:48 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/18 12:52:33 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/19 12:01:16 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,39 @@ char	*exp_new_content(char *arg)
 	return (d);
 }
 
+int	normin(char *args, char *exp_content, int plus)
+{
+	int	c;
+
+	c = 0;
+	if (ft_strchr(exp_content, '=')
+		&& !var_compare(exp_content + 11, args))
+	{
+		if (plus)
+			exp_content = exp_plus(exp_content, args);
+		else
+			exp_content = exp_new_content(args);
+		c = 1;
+	}
+	else if (!ft_strchr(exp_content, '=')
+		&& !ft_strcmp(exp_content + 11,
+			ft_substr(args, 0, strlen_var(args))))
+	{
+		exp_content = exp_new_content(args);
+		c = 1;
+	}
+	return (c);
+}
+
 int	exp_matching_vars(t_cmd *cmd, int i, int plus)
 {
 	t_list	*temp_exp;
 	int		c;
 
-	c = 0;
 	temp_exp = g_data.exp;
 	while (temp_exp)
 	{
-		if (ft_strchr(temp_exp->content, '=')
-			&& !var_compare(temp_exp->content + 11, cmd->args[i]))
-		{/*join*/
-			if (plus)
-				temp_exp->content = exp_plus(temp_exp->content, cmd->args[i]);
-			else
-				temp_exp->content = exp_new_content(cmd->args[i]);
-			c = 1;
-		}
-		else if (!ft_strchr(temp_exp->content, '=')
-			&& !ft_strcmp(temp_exp->content + 11,
-				ft_substr(cmd->args[i], 0, strlen_var(cmd->args[i]))))
-		{
-			temp_exp->content = exp_new_content(cmd->args[i]);
-			c = 1;
-		}
+		c = normin(cmd->args[i], temp_exp->content, plus);
 		temp_exp = temp_exp->next;
 	}
 	return (c);
@@ -71,7 +79,7 @@ int	env_new(t_cmd *cmd, int i, int plus)
 	{
 		if (ft_strchr(temp_env->content, '=')
 			&& !var_compare(temp_env->content, cmd->args[i]))
-		{/*join*/
+		{
 			if (plus)
 				temp_env->content = env_plus(temp_env->content, cmd->args[i]);
 			else
@@ -92,12 +100,7 @@ void	ft_export(t_cmd *cmd)
 	temp_exp = g_data.exp;
 	if (!cmd->args[1])
 	{
-		while (temp_exp)
-		{
-			ft_putstr_fd(temp_exp->content, cmd->out);
-			write(cmd->out, "\n", 1);
-			temp_exp = temp_exp->next;
-		}
+		export_only(cmd);
 		return ;
 	}
 	while (cmd->args[++i])

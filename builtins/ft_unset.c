@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:35:11 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/14 14:13:49 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:09:09 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,35 @@ void	lenv(char	*arg)
 	}
 }
 
+void	norm(t_list *texp)
+{
+	t_list	*temp;
+
+	temp = g_data.exp;
+	if (texp->next)
+	{
+		texp->content = texp->next->content;
+		texp->next = texp->next->next;
+	}
+	if (!texp->next)
+	{
+		while (temp->next->next)
+			temp = temp->next;
+		temp->next = NULL;
+	}
+}
+
 void	lexp(char *arg)
 {
 	t_list	*texp;
-	t_list	*temp;
 	char	*t;
 
-	temp = g_data.exp;
 	texp = g_data.exp;
 	while (texp)
 	{
 		t = ft_substr(texp->content + 11, 0, strlen_var(texp->content + 11));
 		if (!ft_strcmp(t, arg))
-		{
-			if (texp->next)
-			{
-				texp->content = texp->next->content;
-				texp->next = texp->next->next;
-			}
-			if (!texp->next)
-			{
-				while (temp->next->next)
-					temp = temp->next;
-				temp->next = NULL;
-			}
-		}
+			norm(texp);
 		free(t);
 		texp = texp->next;
 	}

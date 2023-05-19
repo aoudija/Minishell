@@ -6,7 +6,7 @@
 #    By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 14:53:06 by aoudija           #+#    #+#              #
-#    Updated: 2023/05/18 11:33:18 by aoudija          ###   ########.fr        #
+#    Updated: 2023/05/19 14:18:35 by aoudija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,3 +28,11 @@ exit status + norm && leaks."
 
 /*EXPORT HANDLING +*/
 IDEA --> see if there is a plus remove it and add variable int plus = 1 | 0;
+void	dup2_and_close(t_cmd *cmd, int c1, int c2)
+{
+	dup2(cmd->in, 0);
+	dup2(cmd->out, 1);
+	close(c1);
+	dup2(c2, cmd->in);
+	close(c2);
+}

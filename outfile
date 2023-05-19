@@ -1,0 +1,16 @@
+Makefile
+back_up_file
+builtins
+execute.c
+execute.o
+include
+libft
+main.c
+main.o
+minishell
+outfile
+parsing
+pipe
+see.tldr
+test.c
+to_do.txt

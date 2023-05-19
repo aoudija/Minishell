@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 06:26:45 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/18 12:40:58 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/19 20:14:00 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void		execute(t_cmd	*cmd);
 
 int			var_is_valid(t_cmd *cmd, char *args);
 /*export*/
+void		export_only(t_cmd *cmd);
 int			count_char(char *str, char c);
 char		*exp_plus(char *exp_old, char *exp_new);
 char		*env_plus(char *env_old, char *env_new);
@@ -171,11 +172,20 @@ void		ft_echo(t_cmd *cmd);
 int			is_builtin(t_cmd *cmd);
 void		exec_builtin(t_cmd *cmd);
 /*pipe*/
+void		d_n_c_first(t_cmd *cmd, int **fd, int i);
+void		d_n_c_middle(t_cmd *cmd, int **fd, int i);
+void		d_n_c_last(t_cmd *cmd, int **fd, int i);
 void		execute_it(t_cmd *cmd);
 char		**put_in_tab(void);
 char		**path_env(void);
 char		*cmd_path(t_cmd *cmd);
 char		*grant_access(t_cmd *cmd);
+char		*builtinnot_path(t_cmd *cmd);
 int			cmd_list_size(t_cmd *lst);
+void		exec_command(t_cmd *cmd, char *s, char **envv);
+void		close_fdeez(t_cmd *cmd, int **fd);
+void		first_cmd(t_cmd *cmd, int **fd, int *i, char **env);
+void		last_cmd(t_cmd *cmd, int **fd, int *i, char **env);
+void		middle_cmd(t_cmd *cmd, int **fd, int *i, char **env);
 
 #endif

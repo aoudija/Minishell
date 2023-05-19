@@ -6,13 +6,13 @@
 #    By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:42:33 by aoudija           #+#    #+#              #
-#    Updated: 2023/05/16 14:03:09 by aoudija          ###   ########.fr        #
+#    Updated: 2023/05/19 17:20:51 by aoudija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc
+CC = cc -g
 
 FLAGS = -Wall -Wextra -Werror
 DEPS = minishell.h
@@ -39,7 +39,8 @@ PARSING	= $(addprefix  parsing/, expand/ft_expand expand/ft_expand_utils expand/
 FILES = main builtins/ft_echo builtins/ft_env builtins/pwd builtins/cd/ft_cd \
 		builtins/cd/cd_utils builtins/export/export_utils builtins/is_builtin \
 		builtins/export/ft_export builtins/ft_unset builtins/export/fill_export builtins/export/var_is_valid\
-		pipe/pipe pipe/pipe_utils_1 pipe/cmd_list_size pipe/grant_access execute $(LIBFT) $(PARSING)
+		pipe/pipe pipe/pipe_utils_1 pipe/pipe_normy pipe/cmd_list_size pipe/grant_access execute \
+		builtins/export/export_only pipe/close_fdeez pipe/pipe_loop $(LIBFT) $(PARSING)
 
 SRC		= $(FILES:=.c)
 OBJ		= $(FILES:=.o)

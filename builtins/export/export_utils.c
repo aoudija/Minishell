@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 16:52:50 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/18 12:52:43 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/19 11:42:36 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ char	*exp_plus(char *exp_old, char *exp_new)
 	char	*new;
 
 	sub = ft_substr(exp_old, 0, ft_strlen(exp_old) - 1);
-	free(exp_old);
 	new = ft_strjoin_frees1(sub, exp_new + strlen_var(exp_new) + 1);
 	new = ft_strjoin_frees1(new, "\"");
 	return (new);
 }
+	// free(exp_old);
+	// free(env_old);
 
 char	*env_plus(char *env_old, char *env_new)
 {
@@ -30,24 +31,23 @@ char	*env_plus(char *env_old, char *env_new)
 	char	*new;
 
 	sub = ft_substr(env_old, 0, ft_strlen(env_old));
-	free(env_old);
 	new = ft_strjoin_frees1(sub, env_new + strlen_var(env_new) + 1);
 	return (new);
 }
+/*remove plus from here and add an integer 
+indexing"plus was here" than passit to other fellas*/
 
 void	export_norm1(t_cmd *cmd, int i)
 {
 	int	c;
 	int	plus;
-/*remove plus from here and add an integer 
-indexing"plus was here" than passit to other fellas*/
+
 	plus = 0;
 	if (ft_strchr(cmd->args[i], '+'))
 	{
 		cmd->args[i] = remove_char(cmd->args[i], '+');
 		plus = 1;
 	}
-
 	c = 0;
 	c = exp_matching_vars(cmd, i, plus);
 	if (env_new(cmd, i, plus))
@@ -81,7 +81,7 @@ void	export_norm2(t_cmd *cmd, int i)
 			ft_lstnew(ft_strjoin("declare -x ", cmd->args[i])));
 }
 
-char	*remove_char(char *str,char c)
+char	*remove_char(char *str, char c)
 {
 	int		i;
 
