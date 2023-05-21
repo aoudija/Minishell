@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 16:52:50 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 11:42:36 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/21 08:14:55 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ char	*exp_plus(char *exp_old, char *exp_new)
 	new = ft_strjoin_frees1(new, "\"");
 	return (new);
 }
-	// free(exp_old);
-	// free(env_old);
 
 char	*env_plus(char *env_old, char *env_new)
 {

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 14:55:07 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 18:32:04 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/20 13:37:16 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,9 @@ char	*cmd_path(t_cmd *cmd)
 	char	*cmd_f;
 	char	**path;
 	char	*s;
-	int		a;
 	int		i;
 
 	cmd_f = ft_strjoin("/", cmd->args[0]);
-	a = 0;
 	i = -1;
 	path = path_env();
 	if (!path)
@@ -68,14 +66,10 @@ char	*cmd_path(t_cmd *cmd)
 	{
 		s = ft_strjoin(path[i], cmd_f);
 		if (!access(s, F_OK))
-		{
-			a = 5;
 			break ;
-		}
 		free(s);
+		s = NULL;
 	}
 	free(cmd_f);
-	if (a != 5)
-		return (NULL);
 	return (s);
 }

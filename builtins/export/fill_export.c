@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:51:51 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/14 18:49:11 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/20 20:30:34 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	sort_exp(void)
 	while (temp)
 	{
 		tempp = temp;
-		while (tempp)
+		while (tempp->next)
 		{
-			if (tempp->next && ft_strcmp(temp->content,
+			if (ft_strcmp(temp->content,
 					tempp->next->content) > 0)
 			{
-				t = ft_strdup(temp->content);
+				t = temp->content;
 				temp->content = tempp->next->content;
 				tempp->next->content = t;
 			}

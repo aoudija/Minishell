@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:47:48 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 12:01:16 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/20 21:55:45 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,45 @@ char	*exp_new_content(char *arg)
 	return (d);
 }
 
-int	normin(char *args, char *exp_content, int plus)
+int	normin(char *args, t_list *temp_exp, int plus)
 {
-	int	c;
+	int		c;
+	char	*t;
 
+	t = ft_substr(args, 0, strlen_var(args));
 	c = 0;
-	if (ft_strchr(exp_content, '=')
-		&& !var_compare(exp_content + 11, args))
+	if (ft_strchr(temp_exp->content, '=')
+		&& !var_compare(temp_exp->content + 11, args))
 	{
 		if (plus)
-			exp_content = exp_plus(exp_content, args);
+			temp_exp->content = exp_plus(temp_exp->content, args);
 		else
-			exp_content = exp_new_content(args);
+			temp_exp->content = exp_new_content(args);
 		c = 1;
 	}
-	else if (!ft_strchr(exp_content, '=')
-		&& !ft_strcmp(exp_content + 11,
-			ft_substr(args, 0, strlen_var(args))))
+	else if (!ft_strchr(temp_exp->content, '=')
+		&& !ft_strcmp(temp_exp->content + 11, t))
 	{
-		exp_content = exp_new_content(args);
+		temp_exp->content = exp_new_content(args);
 		c = 1;
 	}
+	free(t);
 	return (c);
 }
 
 int	exp_matching_vars(t_cmd *cmd, int i, int plus)
 {
 	t_list	*temp_exp;
+	char	*t;
 	int		c;
 
 	temp_exp = g_data.exp;
 	while (temp_exp)
 	{
-		c = normin(cmd->args[i], temp_exp->content, plus);
+		t = temp_exp->content;
+		c = normin(cmd->args[i], temp_exp, plus);
+		if (c)
+			free(t);
 		temp_exp = temp_exp->next;
 	}
 	return (c);
@@ -81,9 +87,15 @@ int	env_new(t_cmd *cmd, int i, int plus)
 			&& !var_compare(temp_env->content, cmd->args[i]))
 		{
 			if (plus)
+			{
+				free(temp_env->content);
 				temp_env->content = env_plus(temp_env->content, cmd->args[i]);
+			}
 			else
+			{
+				free(temp_env->content);
 				temp_env->content = ft_strdup(cmd->args[i]);
+			}
 			return (0);
 		}
 		temp_env = temp_env->next;

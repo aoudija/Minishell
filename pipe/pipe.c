@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:13:14 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 21:35:29 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/20 12:57:06 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	pipe_it(t_cmd *cmd, char **envv)
 	int		i;
 	t_cmd	*tmp;
 
-	tmp	= cmd;
+	tmp = cmd;
 	fd = malloc(sizeof(int *) * (cmd_list_size(cmd) - 1));
 	i = cmd_list_size(cmd) - 2;
 	while (i >= 0)
@@ -37,9 +37,32 @@ void	pipe_it(t_cmd *cmd, char **envv)
 	close_fdeez(tmp, fd);
 }
 
+void	fork_n_exec(t_cmd *cmd, char *s, char **envv)
+{
+	int	pid;
+
+	pid = fork();
+	if (!pid)
+	{
+		dup2(cmd->in, 0);
+		dup2(cmd->out, 1);
+		execve(s, cmd->args, envv);
+		free(s);
+		perror("");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		waitpid(pid, &g_data.exit_status, 0);
+		printf("->%d\n", g_data.exit_status);
+		free(s);
+		ft_free(envv);
+		return ;
+	}
+}
+
 void	execute_it(t_cmd *cmd)
 {
-	int		pid;
 	char	*s;
 	char	**envv;
 
@@ -53,24 +76,8 @@ void	execute_it(t_cmd *cmd)
 		s = grant_access(cmd);
 		if (!s)
 			return ;
-		pid = fork();
-		if (!pid)
-		{
-			dup2(cmd->in, 0);
-			dup2(cmd->out, 1);
-			execve(s, cmd->args, envv);
-			free(s);
-			perror("");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			waitpid(pid, &g_data.exit_status, 0);
-			// printf("->%d\n", g_data.exit_status);
-			free(s);
-			ft_free(envv);
-			return ;
-		}
+		fork_n_exec(cmd, s, envv);
+		return ;
 	}
 	pipe_it(cmd, envv);
 	ft_free(envv);

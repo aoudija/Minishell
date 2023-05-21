@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:35:11 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 13:09:09 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/21 15:04:35 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,35 @@ void	shut_up_norma(t_list **tenv, t_list **temp)
 {
 	if ((*tenv)->next)
 	{
+		free((*tenv)->content);
 		(*tenv)->content = (*tenv)->next->content;
+		free((*tenv)->next);
 		(*tenv)->next = (*tenv)->next->next;
 	}
-	if (!(*tenv)->next)
+	else if (!(*tenv)->next)
 	{
 		while ((*temp)->next->next)
 			(*temp) = (*temp)->next;
+		free((*temp)->next->content);
+		free((*temp)->next);
+		(*temp)->next->content = NULL;
+		(*temp)->next = NULL;
+	}
+}
+
+void	shut_up_norma2(t_list **tenv, t_list **temp)
+{
+	if ((*tenv)->next)
+	{
+		(*tenv)->content = (*tenv)->next->content;
+		free((*tenv)->next);
+		(*tenv)->next = (*tenv)->next->next;
+	}
+	else if (!(*tenv)->next)
+	{
+		while ((*temp)->next->next)
+			(*temp) = (*temp)->next;
+		free((*temp)->next);
 		(*temp)->next = NULL;
 	}
 }
@@ -39,41 +61,25 @@ void	lenv(char	*arg)
 	{
 		t = ft_substr(tenv->content, 0, strlen_var(tenv->content));
 		if (!ft_strcmp(t, arg))
-			shut_up_norma(&tenv, &temp);
+			shut_up_norma2(&tenv, &temp);
 		free(t);
 		tenv = tenv->next;
-	}
-}
-
-void	norm(t_list *texp)
-{
-	t_list	*temp;
-
-	temp = g_data.exp;
-	if (texp->next)
-	{
-		texp->content = texp->next->content;
-		texp->next = texp->next->next;
-	}
-	if (!texp->next)
-	{
-		while (temp->next->next)
-			temp = temp->next;
-		temp->next = NULL;
 	}
 }
 
 void	lexp(char *arg)
 {
 	t_list	*texp;
+	t_list	*temp;
 	char	*t;
 
 	texp = g_data.exp;
+	temp = g_data.exp;
 	while (texp)
 	{
 		t = ft_substr(texp->content + 11, 0, strlen_var(texp->content + 11));
 		if (!ft_strcmp(t, arg))
-			norm(texp);
+			shut_up_norma(&texp, &temp);
 		free(t);
 		texp = texp->next;
 	}

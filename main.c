@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:39 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/18 13:04:37 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/21 15:16:52 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,36 @@ void	handle_signals(void)
 	signal(SIGINT, handler);
 }
 
-int	main(int ac, char **av, char **envv)
+void	cz_norma_is_a_karen(t_token *data, t_cmd *cmd)
 {
 	char	*line;
+
+	while (1)
+	{
+		handle_signals();
+		line = readline("\x1B[34mmy_shell$ \033[0m");
+		if (!line)
+			break ;
+		if (line[0])
+		{
+			if (!ft_strcmp(line, "exit"))
+				break ;
+			add_history(line);
+			if (ft_start(line, data, &cmd))
+			{
+				execute(cmd);
+				ft_cmdclear(&cmd);
+			}
+		}
+		free(line);
+	}
+}
+
+int	main(int ac, char **av, char **envv)
+{
 	t_token	*data;
 	t_cmd	*cmd;
 
-	// int		i;
-	// i = -1;
-	// t_cmd	*tmp;
 	if (ac == 1)
 	{
 		g_data.fstdin = dup(0);
@@ -61,23 +82,7 @@ int	main(int ac, char **av, char **envv)
 		fill_export();
 		data = malloc(sizeof(t_token *));
 		cmd = NULL;
-		while (1)
-		{
-			handle_signals();
-			line = readline("\x1B[34mmy_shell$ \033[0m");
-			if (line[0])
-			{
-				if (!ft_strcmp(line, "exit"))
-					break ;
-				add_history(line);
-				if(ft_start(line, data, &cmd))
-				{
-					execute(cmd);
-					ft_cmdclear(&cmd);
-				}
-			}
-			free(line);
-		}
+		cz_norma_is_a_karen(data, cmd);
 		free(data);
 	}
 	return (0);

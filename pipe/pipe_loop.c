@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:47:54 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 20:50:48 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/20 12:50:34 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,7 @@ void	first_cmd(t_cmd *cmd, int **fd, int *i, char **env)
 		if (!pid)
 		{
 			s = builtinnot_path(cmd);
-			dup2(cmd->in, 0);
-			dup2(cmd->out, 1);
-			close(fd[*i][0]);
-			dup2(fd[*i][1], cmd->out);
-			close(fd[*i][1]);
-			// d_n_c_first(cmd, fd, *i);
+			d_n_c_first(cmd, fd, *i);
 			exec_command(cmd, s, env);
 		}
 	}
@@ -42,19 +37,13 @@ void	last_cmd(t_cmd *cmd, int **fd, int *i, char **env)
 
 	if (!cmd->next)
 	{
-		
 		if (!cmd->args)
 			return ;
 		pid = fork();
 		if (!pid)
 		{
 			s = builtinnot_path(cmd);
-			dup2(cmd->in, 0);
-			close(fd[*i][1]);
-			dup2(fd[*i][0], cmd->in);
-			dup2(cmd->out, 1);
-			close(fd[*i][0]);
-			// d_n_c_last(cmd, fd, *i);
+			d_n_c_last(cmd, fd, *i);
 			exec_command(cmd, s, env);
 			exit(EXIT_FAILURE);
 		}

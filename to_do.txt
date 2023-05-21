@@ -6,7 +6,7 @@
 #    By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 14:53:06 by aoudija           #+#    #+#              #
-#    Updated: 2023/05/19 14:18:35 by aoudija          ###   ########.fr        #
+#    Updated: 2023/05/20 14:32:05 by aoudija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,25 +14,4 @@
                                                     (and maybe exit status for "echo $?") : one day spent.
                                                     + (check grant_access algo -> maybe there's a better way )
 -builtins : redo with new parser && free memory...(on_going)
--check if in_out idea is possible for heredoc... -> |not yet|
 -last but not least check_NORMA.
-- 4 days...->>> builtins are done;`
-
-
-
-
-
-
-"2 days left problem with expand echo case so far , export not finished yet and 
-exit status + norm && leaks."
-
-/*EXPORT HANDLING +*/
-IDEA --> see if there is a plus remove it and add variable int plus = 1 | 0;
-void	dup2_and_close(t_cmd *cmd, int c1, int c2)
-{
-	dup2(cmd->in, 0);
-	dup2(cmd->out, 1);
-	close(c1);
-	dup2(c2, cmd->in);
-	close(c2);
-}
