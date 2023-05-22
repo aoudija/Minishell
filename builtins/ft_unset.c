@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:35:11 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/21 15:04:35 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/21 17:38:38 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,6 @@ void	shut_up_norma(t_list **tenv, t_list **temp)
 	}
 }
 
-void	shut_up_norma2(t_list **tenv, t_list **temp)
-{
-	if ((*tenv)->next)
-	{
-		(*tenv)->content = (*tenv)->next->content;
-		free((*tenv)->next);
-		(*tenv)->next = (*tenv)->next->next;
-	}
-	else if (!(*tenv)->next)
-	{
-		while ((*temp)->next->next)
-			(*temp) = (*temp)->next;
-		free((*temp)->next);
-		(*temp)->next = NULL;
-	}
-}
-
 void	lenv(char	*arg)
 {
 	t_list	*tenv;
@@ -61,7 +44,7 @@ void	lenv(char	*arg)
 	{
 		t = ft_substr(tenv->content, 0, strlen_var(tenv->content));
 		if (!ft_strcmp(t, arg))
-			shut_up_norma2(&tenv, &temp);
+			shut_up_norma(&tenv, &temp);
 		free(t);
 		tenv = tenv->next;
 	}

@@ -5,8 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/11 14:53:06 by aoudija           #+#    #+#              #
-#    Updated: 2023/05/20 14:32:05 by aoudija          ###   ########.fr        #
+#    Created:{Your Unique Registration Number is: 6497007720
+
+#Your application submission mail has been sent to the email address you provided during the registration.
+#Please check your spam and “other” folders if you can’t see it in your inbox.
+#} 2023/05/11 14:53:06 by aoudija           #+#    #+#              #
+#    Updated: 2023/05/22 12:53:28 by aoudija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,3 +19,8 @@
                                                     + (check grant_access algo -> maybe there's a better way )
 -builtins : redo with new parser && free memory...(on_going)
 -last but not least check_NORMA.
+
+------???--------
+ls > h h | echo hii
+bash-3.2$ lrr < l > ok
+bash: l: No such file or directory

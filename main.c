@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:39 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/21 15:16:52 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:24:29 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	cz_norma_is_a_karen(t_token *data, t_cmd *cmd)
 	while (1)
 	{
 		handle_signals();
-		line = readline("\x1B[34mmy_shell$ \033[0m");
+		line = readline("bashn't-3.3$ ");
 		if (!line)
 			break ;
 		if (line[0])
@@ -66,6 +66,7 @@ void	cz_norma_is_a_karen(t_token *data, t_cmd *cmd)
 		}
 		free(line);
 	}
+	free(line);
 }
 
 int	main(int ac, char **av, char **envv)

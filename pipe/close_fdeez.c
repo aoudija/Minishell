@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:41:00 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 21:33:29 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/22 09:40:55 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ void	close_fdeez(t_cmd *cmd, int **fd)
 	{
 		close(fd[i][0]);
 		close(fd[i][1]);
+		free(fd[i]);
 		i--;
 	}
+	free(fd);
 	while (wait(NULL) > 0)
 		;
 }

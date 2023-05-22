@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:47:54 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/20 12:50:34 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/22 11:05:58 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	middle_cmd(t_cmd *cmd, int **fd, int *i, char **env)
 	if (cmd->next)
 	{
 		pipe(fd[++(*i)]);
-		pid = fork();
 		close(fd[(*i) - 1][1]);
+		pid = fork();
 		if (!pid)
 		{
 			s = builtinnot_path(cmd);

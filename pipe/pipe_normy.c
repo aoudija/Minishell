@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:41:09 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 20:18:01 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/22 11:37:46 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,6 @@ void	exec_command(t_cmd *cmd, char *s, char **envv)
 			exit(EXIT_FAILURE);
 		}
 	}
+	else
+		exit(0);
 }

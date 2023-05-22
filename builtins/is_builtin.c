@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 08:34:02 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/19 13:09:48 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/22 17:19:35 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 
 int	is_builtin(t_cmd *cmd)
 {
-	if (!ft_strcmp("echo", cmd->cmd))
+	if (!ft_strcmp("echo", cmd->args[0]))
 		return (1);
-	else if (!ft_strcmp("env", cmd->cmd))
+	else if (!ft_strcmp("env", cmd->args[0]))
 		return (1);
-	else if (!ft_strcmp("export", cmd->cmd))
+	else if (!ft_strcmp("export", cmd->args[0]))
 		return (1);
-	else if (!ft_strcmp("unset", cmd->cmd))
+	else if (!ft_strcmp("unset", cmd->args[0]))
 		return (1);
-	else if (!ft_strcmp("cd", cmd->cmd))
+	else if (!ft_strcmp("cd", cmd->args[0]))
 		return (1);
-	else if (!ft_strcmp("pwd", cmd->cmd))
+	else if (!ft_strcmp("pwd", cmd->args[0]))
 		return (1);
 	return (0);
 }
 
 void	exec_builtin(t_cmd *cmd)
 {
-	if (!ft_strcmp("echo", cmd->cmd))
+	if (!ft_strcmp("echo", cmd->args[0]))
 		ft_echo(cmd);
-	else if (!ft_strcmp("env", cmd->cmd))
+	else if (!ft_strcmp("env", cmd->args[0]))
 		ft_env(cmd);
-	else if (!ft_strcmp("export", cmd->cmd))
+	else if (!ft_strcmp("export", cmd->args[0]))
 		ft_export(cmd);
-	else if (!ft_strcmp("unset", cmd->cmd))
+	else if (!ft_strcmp("unset", cmd->args[0]))
 		ft_unset(cmd);
-	else if (!ft_strcmp("cd", cmd->cmd))
+	else if (!ft_strcmp("cd", cmd->args[0]))
 		cd(cmd);
-	else if (!ft_strcmp("pwd", cmd->cmd))
+	else if (!ft_strcmp("pwd", cmd->args[0]))
 		pwd(cmd);
 }
