@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:52:46 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/24 15:02:43 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:06:00 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_exit(t_cmd *cmd)
 			g_data.exit_status = 255;
 		}
 		else if (all_digit(cmd->args[1]) && !cmd->args[2])
-			g_data.exit_status = cmd->args[1];
+			g_data.exit_status = ft_atoi(cmd->args[1]);
 	}
 	else
 		exit(g_data.exit_status);
