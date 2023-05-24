@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 08:34:02 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/22 17:19:35 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/24 11:06:36 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_builtin(t_cmd *cmd)
 {
+	if (!cmd->args)
+		return (0);
 	if (!ft_strcmp("echo", cmd->args[0]))
 		return (1);
 	else if (!ft_strcmp("env", cmd->args[0]))
@@ -25,6 +27,8 @@ int	is_builtin(t_cmd *cmd)
 	else if (!ft_strcmp("cd", cmd->args[0]))
 		return (1);
 	else if (!ft_strcmp("pwd", cmd->args[0]))
+		return (1);
+	else if (!ft_strcmp("exit", cmd->args[0]))
 		return (1);
 	return (0);
 }
@@ -43,4 +47,6 @@ void	exec_builtin(t_cmd *cmd)
 		cd(cmd);
 	else if (!ft_strcmp("pwd", cmd->args[0]))
 		pwd(cmd);
+	else if (!ft_strcmp("exit", cmd->args[0]))
+		ft_exit(cmd);
 }

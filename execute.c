@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:52:49 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/22 17:18:28 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/24 11:01:49 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	execute(t_cmd	*cmd)
 			ft_echo(cmd);
 		else if (!ft_strcmp("env", cmd->args[0]) && !cmd->next)
 			ft_env(cmd);
+		else if (!ft_strcmp("exit", cmd->args[0]) && !cmd->next)
+			ft_exit(cmd);
 		else if (!ft_strcmp("export", cmd->args[0]) && !cmd->next)
 			ft_export(cmd);
 		else if (!ft_strcmp("unset", cmd->args[0]) && !cmd->next)

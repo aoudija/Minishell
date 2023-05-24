@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:00:18 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/18 20:40:59 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/24 14:05:47 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	var_is_valid(t_cmd *cmd, char	*args)
 		j = ft_strjoin_frees1(t, ": not a valid identifier\n");
 		ft_putstr_fd(j, 2);
 		free(j);
+		g_data.exit_status = 1;
 		return (0);
 	}
 	free(sub);

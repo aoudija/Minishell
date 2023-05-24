@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:28 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/22 14:23:56 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/23 11:44:57 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ void	ft_echo(t_cmd *cmd)
 	else
 	{
 		while (cmd->args[++i])
+		{
 			write(cmd->out, cmd->args[i], ft_strlen(cmd->args[i]));
+			write(cmd->out, " ", 1);
+		}
 		write(cmd->out, "\n", 1);
 	}
+	g_data.exit_status = 0;
 }

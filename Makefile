@@ -6,7 +6,7 @@
 #    By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:42:33 by aoudija           #+#    #+#              #
-#    Updated: 2023/05/19 17:20:51 by aoudija          ###   ########.fr        #
+#    Updated: 2023/05/24 10:59:18 by aoudija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,9 @@ PARSING	= $(addprefix  parsing/, expand/ft_expand expand/ft_expand_utils expand/
 			utils/ft_heredoc_utils\
 			ft_start ft_tokenizer ft_get_cmd ft_heredoc)
 		
-FILES = main builtins/ft_echo builtins/ft_env builtins/pwd builtins/cd/ft_cd \
+FILES = main builtins/ft_echo builtins/ft_env builtins/pwd builtins/cd/ft_cd  builtins/exit \
 		builtins/cd/cd_utils builtins/export/export_utils builtins/is_builtin \
-		builtins/export/ft_export builtins/ft_unset builtins/export/fill_export builtins/export/var_is_valid\
+		builtins/export/ft_export builtins/ft_unset builtins/export/fill_export builtins/export/var_is_valid \
 		pipe/pipe pipe/pipe_utils_1 pipe/pipe_normy pipe/cmd_list_size pipe/grant_access execute \
 		builtins/export/export_only pipe/close_fdeez pipe/pipe_loop $(LIBFT) $(PARSING)
 

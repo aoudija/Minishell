@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:13:14 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/22 17:12:10 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/23 12:46:45 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	fork_n_exec(t_cmd *cmd, char *s, char **envv)
 	else
 	{
 		waitpid(pid, &g_data.exit_status, 0);
-		printf("->%d\n", g_data.exit_status);
 		free(s);
 		ft_free(envv);
 		return ;

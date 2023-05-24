@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 06:26:45 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/22 17:05:18 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/24 11:01:28 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		ft_cmddeloner(t_cmd *cmd);
 void		ft_cmdclear(t_cmd	**cmd);
 int			ft_cmdsize(t_cmd *cmd);
 
-/* parcing */
+/* parsing */
 char		*ft_expand(char *value);
 void		ft_get_cmd(t_token **data, t_cmd **cmd);
 int			ft_start(char *line, t_token *data, t_cmd **cmd);
@@ -169,6 +169,7 @@ void		fill_env(char **envv);
 void		pwd(t_cmd *cmd);
 void		ft_env(t_cmd *cmd);
 void		ft_echo(t_cmd *cmd);
+void		ft_exit(t_cmd *cmd);
 
 int			is_builtin(t_cmd *cmd);
 void		exec_builtin(t_cmd *cmd);

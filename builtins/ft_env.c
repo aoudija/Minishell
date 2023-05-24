@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:23:23 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/21 17:25:24 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/23 11:23:28 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	ft_env(t_cmd *cmd)
 		write(cmd->out, "\n", 1);
 		temp = temp->next;
 	}
+	g_data.exit_status = 0;
 }

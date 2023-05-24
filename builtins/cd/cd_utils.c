@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:12:55 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/21 17:37:41 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/23 11:25:15 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,14 @@ void	norma_cd_1(t_cmd *cmd, char *cwd, int i)
 		err = ft_strjoin_frees1(err, cmd->args[1]);
 		perror(err);
 		free(err);
+		g_data.exit_status = 127;
 	}
 	else
 	{
 		search_var("OLDPWD", cwd);
 		getcwd(new, sizeof(new));
 		search_var("PWD", new);
+		g_data.exit_status = 0;
 	}
 }
 
@@ -89,11 +91,13 @@ void	norma_cd_2(char *cwd)
 		search_var("OLDPWD", cwd);
 		getcwd(new, sizeof(new));
 		search_var("PWD", new);
+		g_data.exit_status = 0;
 	}
 	else
 	{
 		err = ft_strdup("bashn't: cd: HOME not set\n");
 		ft_putstr_fd(err, 2);
 		free(err);
+		g_data.exit_status = 127;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:39 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/22 16:24:29 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/24 11:05:20 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	cz_norma_is_a_karen(t_token *data, t_cmd *cmd)
 			break ;
 		if (line[0])
 		{
-			if (!ft_strcmp(line, "exit"))
-				break ;
 			add_history(line);
 			if (ft_start(line, data, &cmd))
 			{
@@ -66,7 +64,6 @@ void	cz_norma_is_a_karen(t_token *data, t_cmd *cmd)
 		}
 		free(line);
 	}
-	free(line);
 }
 
 int	main(int ac, char **av, char **envv)
