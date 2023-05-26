@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:17 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/22 17:15:17 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:21:56 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	cmd_list_size(t_cmd *lst)
 {
 	t_cmd	*tmp;
 	int		i;
+
 	tmp = lst;
 	i = 0;
 	while (tmp)

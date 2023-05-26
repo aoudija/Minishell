@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:52:49 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/24 11:01:49 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/24 20:04:17 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	execute(t_cmd	*cmd)
 {
-	// if (!cmd->args)
-		// return ;
+	if (!cmd || (!cmd->args && !cmd->next))
+		return ;
 	if (cmd_list_size(cmd) == 1 && is_builtin(cmd))
 	{
 		if (!ft_strcmp("echo", cmd->args[0]) && !cmd->next

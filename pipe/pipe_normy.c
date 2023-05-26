@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:41:09 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/22 11:37:46 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/25 19:36:17 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*builtinnot_path(t_cmd *cmd)
 	{
 		s = grant_access(cmd);
 		if (!s)
-			exit(EXIT_FAILURE);
+			exit(g_data.exit_status);
 	}
 	return (s);
 }
@@ -62,14 +62,14 @@ void	exec_command(t_cmd *cmd, char *s, char **envv)
 		if (is_builtin(cmd))
 		{
 			exec_builtin(cmd);
-			exit(1);
+			exit(g_data.exit_status);
 		}
 		else
 		{
 			execve(s, cmd->args, envv);
-			exit(EXIT_FAILURE);
+			exit(g_data.exit_status);
 		}
 	}
 	else
-		exit(0);
+		exit(g_data.exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:00:18 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/24 14:05:47 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/26 09:39:56 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,20 @@ char	*substring(char *args)
 	char	*sub;
 
 	sub = NULL;
-	if (args[0] == '+' && args[ft_strlen(args) - 1] == '=')
+	if (strchr(args, '+') && args[ft_strlen(args) - 1] == '+'
+		&& !ft_strchr(args, '='))
 		sub = NULL;
-	else if (ft_strchr(args, '=') && strlen_var(args))
-		sub = ft_substr(args, 0, strlen_var(args));
-	else if (!ft_strchr(args, '='))
-		sub = ft_strdup(args);
-	if (!sub)
-		sub = ft_strdup(args);
+	else
+	{
+		if (args[0] == '+' && args[ft_strlen(args) - 1] == '=')
+			sub = NULL;
+		else if (ft_strchr(args, '=') && strlen_var(args))
+			sub = ft_substr(args, 0, strlen_var(args));
+		else if (!ft_strchr(args, '='))
+			sub = ft_strdup(args);
+		if (!sub)
+			sub = ft_strdup(args);
+	}
 	return (sub);
 }
 
@@ -90,12 +96,7 @@ int	var_is_valid(t_cmd *cmd, char	*args)
 	char	*t;
 	char	*sub;
 
-	sub = NULL;
-	if (strchr(args, '+') && args[ft_strlen(args) - 1] == '+'
-		&& !ft_strchr(args, '='))
-		sub = NULL;
-	else
-		sub = substring(args);
+	sub = substring(args);
 	if (!check_characters(sub, cmd))
 	{
 		if (!sub)

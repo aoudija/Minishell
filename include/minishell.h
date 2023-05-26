@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 06:26:45 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/24 11:01:28 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/24 19:11:42 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,15 +164,15 @@ int			found_var(char *var);
 void		cd(t_cmd *cmd);
 /*unset*/
 void		ft_unset(t_cmd *cmd);
+/*lonelymofos*/
 void		fill_env(char **envv);
-
 void		pwd(t_cmd *cmd);
 void		ft_env(t_cmd *cmd);
 void		ft_echo(t_cmd *cmd);
 void		ft_exit(t_cmd *cmd);
-
 int			is_builtin(t_cmd *cmd);
 void		exec_builtin(t_cmd *cmd);
+void		perrornot(char *str);
 /*pipe*/
 void		d_n_c_first(t_cmd *cmd, int **fd, int i);
 void		d_n_c_middle(t_cmd *cmd, int **fd, int i);

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:13:14 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/23 12:46:45 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/25 19:28:18 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,11 @@ void	fork_n_exec(t_cmd *cmd, char *s, char **envv)
 		dup2(cmd->in, 0);
 		dup2(cmd->out, 1);
 		execve(s, cmd->args, envv);
-		free(s);
-		ft_free(envv);
-		perror("");
-		exit(EXIT_FAILURE);
 	}
 	else
 	{
-		waitpid(pid, &g_data.exit_status, 0);
+		wait(&g_data.exit_status);
+		g_data.exit_status %= 255;
 		free(s);
 		ft_free(envv);
 		return ;
@@ -74,8 +71,6 @@ void	execute_it(t_cmd *cmd)
 			ft_free(envv);
 			return ;
 		}
-		if (!cmd->args)
-			return ;
 		s = grant_access(cmd);
 		if (!s)
 		{
