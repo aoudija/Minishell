@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:51:51 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/29 14:11:20 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:49:48 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	sort_exp(void)
 	temp = g_data.exp;
 	while (temp)
 	{
-		printf("|%s|\n", temp->content);
 		tempp = temp;
 		while (tempp->next)
 		{

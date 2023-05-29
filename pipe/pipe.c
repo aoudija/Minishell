@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:13:14 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/28 19:37:35 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 22:02:45 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	fork_n_exec(t_cmd *cmd, char *s, char **envv)
 		dup2(cmd->in, 0);
 		dup2(cmd->out, 1);
 		execve(s, cmd->args, envv);
+		exit(g_data.exit_status);
 	}
 	else
 	{

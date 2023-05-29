@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:23:23 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/29 16:16:36 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:40:43 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	ft_env(t_cmd *cmd)
 {
 	t_list	*temp;
 
-	// if (!g_data.env->content)
-	// 	return ;
 	temp = g_data.env;
 	while (temp)
 	{

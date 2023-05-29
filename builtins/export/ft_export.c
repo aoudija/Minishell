@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:47:48 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/29 17:15:45 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 21:24:14 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,13 @@ void	ft_export(t_cmd *cmd)
 	{
 		if (var_is_valid(cmd, cmd->args[i]))
 		{
-			if (check(cmd, i))
-				break ;
-			if (ft_strchr(cmd->args[i], '='))
-				export_norm1(cmd, i);
-			else if (!ft_strchr(cmd->args[i], '='))
-				export_norm2(cmd, i);
+			if (!check(cmd, i))
+			{
+				if (ft_strchr(cmd->args[i], '='))
+					export_norm1(cmd, i);
+				else if (!ft_strchr(cmd->args[i], '='))
+					export_norm2(cmd, i);
+			}
 		}
 	}
 	sort_exp();
