@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 14:46:56 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/21 17:37:34 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/28 20:43:47 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	search_var(char *str, char *new)
 void	cd(t_cmd *cmd)
 {
 	int		i;
-	char	cwd[1000];
+	char	cwd[PATH_MAX];
 
 	getcwd(cwd, sizeof(cwd));
 	i = 0;

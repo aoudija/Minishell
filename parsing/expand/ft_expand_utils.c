@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 21:42:38 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/13 20:05:15 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/28 21:19:06 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*ft_dollarvalue(char *str)
 	while (tmp && str[0])
 	{
 		var = tmp->content;
-		if (var[len] && !ft_strncmp(var, str, len) && var[len + 1]
-			&& var[len] == '=')
+		if (var[len] && !ft_strncmp(var, str, len)
+			&& var[len] == '=' && var[len + 1])
 			return (ft_strdup(var + len + 1));
 		tmp = tmp->next;
 	}
@@ -37,8 +37,8 @@ char	*ft_getvalue(char *value, int *i)
 	char	*var;
 
 	s = ft_strdup("");
-	if (!ft_isalnum(value[*i + 1]) && value[*i + 1] != '_'
-		&& value[(*i + 1)] != '?' && !ft_quotes(value, *i + 2))
+	if (!ft_quotes(value, *i + 2) && !ft_isalnum(value[*i + 1])
+		&& value[(*i + 1)] != '?' && value[*i + 1] != '_')
 	{
 		while (value[*i] && value[*i] != '$')
 			s = ft_charjoin(s, value[(*i)++]);

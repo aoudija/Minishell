@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:27:55 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/17 14:49:17 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/28 21:19:53 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_cmd_type(t_token **data)
 			tmp->value = ft_expand_name(tmp->value);
 		else if (tmp->type != DELIMITER)
 		{
-			if (tmp->value[0] == '$')
+			if (ft_strchr(tmp->value, '$') && ft_isquotein(tmp->value))
 				tmp->flag = 1;
 			else
 				tmp->flag = 0;

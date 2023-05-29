@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 22:10:11 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/23 11:22:40 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/28 20:25:22 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pwd(t_cmd *cmd)
 {
-	char	cwd[1000];
+	char	cwd[PATH_MAX];
 
 	getcwd(cwd, sizeof(cwd));
 	ft_putstr_fd(cwd, cmd->out);

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:47:48 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/24 14:06:21 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:15:45 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ int	env_new(t_cmd *cmd, int i, int plus)
 	temp_env = g_data.env;
 	while (temp_env)
 	{
-		if (ft_strchr(temp_env->content, '=')
-			&& !var_compare(temp_env->content, cmd->args[i]))
+		if (!var_compare(temp_env->content, cmd->args[i]))
 		{
 			if (plus)
 			{
@@ -119,6 +118,8 @@ void	ft_export(t_cmd *cmd)
 	{
 		if (var_is_valid(cmd, cmd->args[i]))
 		{
+			if (check(cmd, i))
+				break ;
 			if (ft_strchr(cmd->args[i], '='))
 				export_norm1(cmd, i);
 			else if (!ft_strchr(cmd->args[i], '='))

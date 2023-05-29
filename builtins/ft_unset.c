@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:35:11 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/21 17:38:38 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 18:21:20 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ void	shut_up_norma(t_list **tenv, t_list **temp)
 	}
 	else if (!(*tenv)->next)
 	{
+		if (ft_lstsize((*tenv)) == 1)
+		{
+			free((*tenv)->content);
+			free((*tenv));
+			(*tenv)->content = NULL;
+			(*tenv) = NULL;
+			return ;
+		}
 		while ((*temp)->next->next)
 			(*temp) = (*temp)->next;
 		free((*temp)->next->content);
@@ -40,13 +48,19 @@ void	lenv(char	*arg)
 
 	temp = g_data.env;
 	tenv = g_data.env;
+	if (!tenv->content)
+		return ;
+	printf("hey\n");
 	while (tenv)
 	{
 		t = ft_substr(tenv->content, 0, strlen_var(tenv->content));
 		if (!ft_strcmp(t, arg))
 			shut_up_norma(&tenv, &temp);
 		free(t);
-		tenv = tenv->next;
+		if (tenv)
+			tenv = tenv->next;
+		else
+			tenv = NULL;
 	}
 }
 
@@ -56,6 +70,8 @@ void	lexp(char *arg)
 	t_list	*temp;
 	char	*t;
 
+	if (!g_data.exp->content)
+		return ;
 	texp = g_data.exp;
 	temp = g_data.exp;
 	while (texp)
@@ -64,7 +80,10 @@ void	lexp(char *arg)
 		if (!ft_strcmp(t, arg))
 			shut_up_norma(&texp, &temp);
 		free(t);
-		texp = texp->next;
+		if (texp)
+			texp = texp->next;
+		else
+			texp = NULL;
 	}
 }
 

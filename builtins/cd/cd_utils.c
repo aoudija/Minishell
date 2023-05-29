@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:12:55 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/25 18:26:27 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/28 20:25:45 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,18 @@ void	change_exp(char *str, char *new)
 void	norma_cd_1(t_cmd *cmd, char *cwd, int i)
 {
 	char	*err;
-	char	new[1024];
+	char	new[PATH_MAX];
 
-	if (i)
+	if (i == -1)
 	{
 		err = ft_strjoin("bashn't: ", cmd->args[0]);
 		err = ft_strjoin_frees1(err, ": ");
 		err = ft_strjoin_frees1(err, cmd->args[1]);
 		perror(err);
 		free(err);
-		g_data.exit_status = 127;
+		g_data.exit_status = 1;
 	}
-	else
+	else if (!i)
 	{
 		search_var("OLDPWD", cwd);
 		getcwd(new, sizeof(new));
@@ -83,7 +83,7 @@ void	norma_cd_1(t_cmd *cmd, char *cwd, int i)
 void	norma_cd_2(char *cwd)
 {
 	char	*err;
-	char	new[1024];
+	char	new[PATH_MAX];
 
 	if (found_var("HOME=/Users/aoudija"))
 	{

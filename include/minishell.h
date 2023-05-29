@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 06:26:45 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/24 19:11:42 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:14:45 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int			ft_tokenizer(char *cmd, t_token **data);
 int			check_syntax(char *cmd);
 int			ft_quotes(char *cmd, int index);
 int			ft_red_check(char c, char *cmd, int index);
-void		ft_add_operator(t_token **data, char *cmd, int *i);
-void		ft_add_str(t_token **data, char *cmd, int *index);
+void		ft_operator_add(t_token **data, char *cmd, int *index);
+void		ft_str_add(t_token **data, char *cmd, int *index);
 void		ft_cmd_type(t_token **data);
 int			ft_check_data_syntax(t_token **data);
 int			ft_check_cmd(char *str);
@@ -132,6 +132,7 @@ typedef struct s_e_data
 	int		sig;
 	int		fstdin;
 	int		fstdout;
+	int		sigflag;
 }			t_e_data;
 t_e_data	g_data;
 
@@ -154,6 +155,9 @@ void		ft_export(t_cmd	*cmd);
 void		export_norm1(t_cmd *cmd, int i);
 void		export_norm2(t_cmd *cmd, int i);
 char		*remove_char(char *str, char c);
+
+int			check(t_cmd *cmd, int i);
+
 /*cd*/
 void		search_var(char *str, char *new);
 void		change_env(char *str, char *new);
@@ -172,7 +176,6 @@ void		ft_echo(t_cmd *cmd);
 void		ft_exit(t_cmd *cmd);
 int			is_builtin(t_cmd *cmd);
 void		exec_builtin(t_cmd *cmd);
-void		perrornot(char *str);
 /*pipe*/
 void		d_n_c_first(t_cmd *cmd, int **fd, int i);
 void		d_n_c_middle(t_cmd *cmd, int **fd, int i);

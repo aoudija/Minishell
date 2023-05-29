@@ -6,27 +6,19 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:39 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/24 11:05:20 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 18:06:11 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
-
-void	sigint_handler(int signum)
-{
-	rl_replace_line("", 0);
-	putchar('\n');
-	rl_on_new_line();
-	rl_redisplay();
-	signum++;
-}
 
 void	handler(int sig)
 {
 	if (sig == SIGINT)
 	{
 		g_data.exit_status = 1;
-		ft_putstr_fd("\n", 1);
+		if (!g_data.sigflag)
+			ft_putstr_fd("\n", 1);
 		rl_replace_line("", 1);
 		rl_on_new_line();
 	}
@@ -51,8 +43,12 @@ void	cz_norma_is_a_karen(t_token *data, t_cmd *cmd)
 	{
 		handle_signals();
 		line = readline("bashn't-3.3$ ");
+		g_data.sigflag = 0;
 		if (!line)
+		{
+			printf("exit\n");
 			break ;
+		}
 		if (line[0])
 		{
 			add_history(line);
@@ -83,5 +79,5 @@ int	main(int ac, char **av, char **envv)
 		cz_norma_is_a_karen(data, cmd);
 		free(data);
 	}
-	return (0);
+	exit(g_data.exit_status);
 }

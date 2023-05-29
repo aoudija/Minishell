@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:41:09 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/25 19:36:17 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/27 19:30:52 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	d_n_c_middle(t_cmd *cmd, int **fd, int i)
 	dup2(fd[i - 1][0], cmd->in);
 	dup2(fd[i][1], cmd->out);
 	close(fd[i][1]);
-	close(fd[i - 1][0]);
 }
 
 void	exec_command(t_cmd *cmd, char *s, char **envv)

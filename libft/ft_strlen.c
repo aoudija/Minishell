@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:08:25 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/04/23 12:40:33 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/28 09:12:57 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (-1);
 	i = 0;
 	while (s[i])
 		i++;

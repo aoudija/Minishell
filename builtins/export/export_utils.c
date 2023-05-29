@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 16:52:50 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/21 08:14:55 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 15:20:50 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	export_norm1(t_cmd *cmd, int i)
 		plus = 1;
 	}
 	c = 0;
-	c = exp_matching_vars(cmd, i, plus);
+	if (g_data.exp->content)
+		c = exp_matching_vars(cmd, i, plus);
 	if (env_new(cmd, i, plus))
 	{
 		ft_lstadd_back(&g_data.env, ft_lstnew(ft_strdup(cmd->args[i])));
@@ -65,14 +66,17 @@ void	export_norm2(t_cmd *cmd, int i)
 
 	next = 1;
 	temp_exp = g_data.exp;
-	while (temp_exp)
+	if (g_data.exp->content)
 	{
-		t = ft_substr(temp_exp->content + 11, 0,
-				strlen_var(temp_exp->content + 11));
-		if (next && !ft_strcmp(t, cmd->args[i]))
-			next = 0;
-		temp_exp = temp_exp->next;
-		free(t);
+		while (temp_exp)
+		{
+			t = ft_substr(temp_exp->content + 11, 0,
+					strlen_var(temp_exp->content + 11));
+			if (next && !ft_strcmp(t, cmd->args[i]))
+				next = 0;
+			temp_exp = temp_exp->next;
+			free(t);
+		}
 	}
 	if (next)
 		ft_lstadd_back(&g_data.exp,

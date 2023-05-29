@@ -6,7 +6,7 @@
 #    By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 22:42:33 by aoudija           #+#    #+#              #
-#    Updated: 2023/05/25 11:57:05 by aoudija          ###   ########.fr        #
+#    Updated: 2023/05/29 17:10:06 by aoudija          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = cc -g
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g  -Wall -Wextra -Werror
 DEPS = minishell.h
 
 LFLAGS = -L ~/.brew/opt/readline/lib
@@ -38,7 +38,8 @@ PARSING	= $(addprefix  parsing/, expand/ft_expand expand/ft_expand_utils expand/
 		
 FILES = main builtins/ft_echo builtins/ft_env builtins/pwd builtins/cd/ft_cd  builtins/exit \
 		builtins/cd/cd_utils builtins/export/export_utils builtins/is_builtin \
-		builtins/export/ft_export builtins/ft_unset builtins/export/fill_export builtins/export/var_is_valid \
+		builtins/export/ft_export builtins/ft_unset builtins/export/fill_export builtins/export/empty \
+		builtins/export/var_is_valid \
 		pipe/pipe pipe/pipe_utils_1 pipe/pipe_normy pipe/cmd_list_size pipe/grant_access execute \
 		builtins/export/export_only pipe/close_fdeez pipe/pipe_loop $(LIBFT) $(PARSING)
 
@@ -52,7 +53,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
 	@printf "$(CURSIVE)$(GRAY)	- Compiling $(NAME)... $(RESET)\n"
-	@$(CC) $(OBJ) $(IFLAGS) $(INCLUDES) -o $(NAME) $(LFLAGS) -lreadline
+	@$(CC)  -fsanitize=address $(OBJ) $(IFLAGS) $(INCLUDES) -o $(NAME) $(LFLAGS) -lreadline
 	@printf "$(GREEN)    - Executable ready.\n$(RESET)"
 
 %.o: %.c $(HEADER)

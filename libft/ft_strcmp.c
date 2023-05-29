@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:05:55 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/05 17:30:21 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/29 15:26:12 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strcmp(char *str, char *st)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = -1;
 	while (str[++i])
 	{
