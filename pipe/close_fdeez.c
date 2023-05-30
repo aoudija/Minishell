@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:41:00 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/28 17:59:30 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:51:20 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ void	close_fdeez(t_cmd *cmd, int **fd)
 	}
 	free(fd);
 	waitpid(-1, &g_data.exit_status, 0);
-	if (WIFEXITED(g_data.exit_status))
+	if (WIFSIGNALED(g_data.exit_status))
+		g_data.exit_status += 128;
+	else if (WIFEXITED(g_data.exit_status))
 		g_data.exit_status = WEXITSTATUS(g_data.exit_status) % 255;
 	while (wait(NULL) > 0)
 		;
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handler);
 }

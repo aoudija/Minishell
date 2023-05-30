@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:47:54 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/29 13:45:41 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:50:59 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	first_cmd(t_cmd *cmd, int **fd, int *i, char **env)
 			g_data.exit_status = 1;
 		else if (!pid)
 		{
+			signal(SIGQUIT, SIG_DFL);
+			signal(SIGINT, SIG_DFL);
 			if (g_data.exit_status == 1)
 				exit(g_data.exit_status);
 			s = builtinnot_path(cmd);
@@ -63,6 +65,8 @@ void	last_cmd(t_cmd *cmd, int **fd, int *i, char **env)
 			g_data.exit_status = 1;
 		else if (!pid)
 		{
+			signal(SIGQUIT, SIG_DFL);
+			signal(SIGINT, SIG_DFL);
 			if (g_data.exit_status == 1)
 				exit(g_data.exit_status);
 			s = builtinnot_path(cmd);
@@ -87,6 +91,8 @@ void	middle_cmd(t_cmd *cmd, int **fd, int *i, char **env)
 			fork_error(pid);
 		else if (!pid)
 		{
+			signal(SIGQUIT, SIG_DFL);
+			signal(SIGINT, SIG_DFL);
 			if (g_data.exit_status == 1)
 				exit(g_data.exit_status);
 			s = builtinnot_path(cmd);

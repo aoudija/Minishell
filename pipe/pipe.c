@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:13:14 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/29 22:02:45 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:50:41 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	pipe_it(t_cmd *cmd, char **envv)
 	i = 0;
 	while (cmd->next)
 	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
 		first_cmd(cmd, fd, &i, envv);
 		cmd = cmd->next;
 		last_cmd(cmd, fd, &i, envv);
@@ -41,9 +43,13 @@ void	fork_n_exec(t_cmd *cmd, char *s, char **envv)
 {
 	int	pid;
 
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	pid = fork();
 	if (!pid)
 	{
+		signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, SIG_DFL);
 		dup2(cmd->in, 0);
 		dup2(cmd->out, 1);
 		execve(s, cmd->args, envv);
@@ -51,8 +57,11 @@ void	fork_n_exec(t_cmd *cmd, char *s, char **envv)
 	}
 	else
 	{
-		wait(&g_data.exit_status);
-		g_data.exit_status %= 255;
+		waitpid(pid, &g_data.exit_status, 0);
+		if (WIFSIGNALED(g_data.exit_status))
+			g_data.exit_status += 128;
+		else
+			g_data.exit_status %= 255;
 		free(s);
 		ft_free(envv);
 		return ;
@@ -79,6 +88,8 @@ void	execute_it(t_cmd *cmd)
 			return ;
 		}
 		fork_n_exec(cmd, s, envv);
+		signal(SIGINT, handler);
+		signal(SIGQUIT, handler);
 		return ;
 	}
 	else

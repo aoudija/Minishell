@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 06:26:45 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/05/29 17:14:45 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:31:19 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ void		ft_heredocsig(int sig);
 char		*ft_expand_delimiter(char *delimiter);
 char		*ft_namegenerator(void);
 
+void		handler(int sig);
+
 /*------ EXECUTION---------*/
 
 typedef struct s_e_data
@@ -164,7 +166,7 @@ void		change_env(char *str, char *new);
 void		change_exp(char *str, char *new);
 void		norma_cd_1(t_cmd *cmd, char *cwd, int i);
 void		norma_cd_2(char *cwd);
-int			found_var(char *var);
+char		*found_var(char *var);
 void		cd(t_cmd *cmd);
 /*unset*/
 void		ft_unset(t_cmd *cmd);

@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:12:55 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/28 20:25:45 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:31:08 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void	norma_cd_2(char *cwd)
 	char	*err;
 	char	new[PATH_MAX];
 
-	if (found_var("HOME=/Users/aoudija"))
+	if (found_var("HOME"))
 	{
-		chdir("/Users/aoudija");
+		chdir(found_var("HOME"));
 		search_var("OLDPWD", cwd);
 		getcwd(new, sizeof(new));
 		search_var("PWD", new);
