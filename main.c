@@ -6,7 +6,7 @@
 /*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 22:02:39 by aoudija           #+#    #+#             */
-/*   Updated: 2023/05/30 14:41:33 by aoudija          ###   ########.fr       */
+/*   Updated: 2023/05/30 17:05:30 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int ac, char **av, char **envv)
 
 	if (ac == 1)
 	{
-		// rl_catch_signals = 0;
 		g_data.fstdin = dup(0);
 		g_data.fstdout = dup(1);
 		(void)av;
